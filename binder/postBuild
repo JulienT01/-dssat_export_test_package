@@ -8,13 +8,13 @@ apt-add-repository 'deb [ arch=amd64 ] https://raw.githubusercontent.com/pdidev/
 wget -O ~/pdidev-archive-keyring.gpg https://raw.githubusercontent.com/pdidev/repo/ubuntu/pdidev-archive-keyring.gpg
 chmod a+r ~/pdidev-archive-keyring.gpg 
 #apt update
-apt install -y pdidev-archive-keyring
+#apt install -y pdidev-archive-keyring
 
 
-wget https://gac.udc.es/~emilioj/bullseye.tgz
-tar -xf bullseye.tgz
-cd bullseye
-apt install -y `find . -name "*.deb"`
+#wget https://gac.udc.es/~emilioj/bullseye.tgz
+#tar -xf bullseye.tgz
+#cd bullseye
+#apt install -y `find . -name "*.deb"`
 
 #apt install python3-pip -y
 #python3 -m pip install --no-cache-dir notebook jupyterlab jupyterhub
