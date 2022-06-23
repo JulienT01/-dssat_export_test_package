@@ -1,43 +1,16 @@
-git clone https://gitlab.maisondelasimulation.fr/pdidev/pdi.git
-mkdir ./pdi/build && cd pdi/build
-cmake -DCMAKE_INSTALL_PREFIX='./pdi' \
-    -DDIST_PROFILE=User \
-    -DCMAKE_VERBOSE_MAKEFILE=ON \
-    -DBUILD_CFG_VALIDATOR=OFF \
-    -DBUILD_DECL_HDF5_PLUGIN=OFF \
-    -DBUILD_DECL_NETCDF_PLUGIN=OFF \
-    -DBUILD_DECL_SION_PLUGIN=OFF \
-    -DBUILD_FLOWVR_PLUGIN=OFF \
-    -DBUILD_FORTRAN=ON \
-    -DBUILD_FTI_PLUGIN=OFF \
-    -DBUILD_HDF5_PARALLEL=OFF \
-    -DBUILD_MPI_PLUGIN=OFF \
-    -DBUILD_PYCALL_PLUGIN=ON \
-    -DBUILD_PYTHON=ON \
-    -DBUILD_SET_VALUE_PLUGIN=ON \
-    -DBUILD_SERIALIZE_PLUGIN=ON \
-    -DBUILD_SHARED_LIBS=ON \
-    -DBUILD_TEST_PLUGIN=OFF \
-    -DBUILD_TRACE_PLUGIN=ON \
-    -DBUILD_USER_CODE_PLUGIN=ON \
-    -DUSE_DEFAULT=EMBEDDED .. # configuration
-make install   # compilation and installation
+
+echo "deb [ arch=amd64 ] https://raw.githubusercontent.com/pdidev/repo/ubuntu focal main" | tee /etc/apt/sources.list.d/pdi.list > /dev/null
+wget -O /etc/apt/trusted.gpg.d/pdidev-archive-keyring.gpg https://raw.githubusercontent.com/pdidev/repo/ubuntu/pdidev-archive-keyring.gpg
+chmod a+r /etc/apt/trusted.gpg.d/pdidev-archive-keyring.gpg /etc/apt/sources.list.d/pdi.list
+apt update
+apt install -y pdidev-archive-keyring
 
 
-cd ~
-git clone --recurse-submodules https://gitlab.inria.fr/rgautron/gym_dssat_pdi.git
-cd gym_dssat_pdi
+wget https://gac.udc.es/~emilioj/bullseye.tgz
+tar -xf bullseye.tgz
+cd bullseye
+apt install -y `find . -name "*.deb"`
 
-
-cd dssat-csm-os
-mkdir build
-cd build
-cmake -DCMAKE_INSTALL_PREFIX='.' -DCMAKE_PREFIX_PATH='~/pdi/share/paraconf/cmake;~/pdi/share/pdi/cmake;~/pdi/share/yaml/cmake/' ..
-make
-make install
-
-#TODO:
-cd ~/gym_dssat_pdi/dssat-csm-data
-sudo cp -r ./* ~/dssat_pdi
-cd ~/gym_dssat_pdi/gym-dssat-pdi
-pip install -e .
+#apt install python3-pip -y
+#python3 -m pip install --no-cache-dir notebook jupyterlab jupyterhub
+#python3 -m pip install --no-cache-dir gym==0.18.3
