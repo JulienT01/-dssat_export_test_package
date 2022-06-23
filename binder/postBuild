@@ -1,5 +1,5 @@
 
-#apt install software-propoerties-common
+#apt install software-properties-common
 apt-add-repository 'deb [ arch=amd64 ] https://raw.githubusercontent.com/pdidev/repo/ubuntu focal main'
 
 #echo "deb [ arch=amd64 ] https://raw.githubusercontent.com/pdidev/repo/ubuntu focal main" | tee /etc/apt/sources.list.d/pdi.list > /dev/null
