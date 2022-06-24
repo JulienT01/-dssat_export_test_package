@@ -7,7 +7,7 @@ apt-add-repository 'deb [ arch=amd64 ] https://raw.githubusercontent.com/pdidev/
 #chmod a+r /etc/apt/trusted.gpg.d/pdidev-archive-keyring.gpg /etc/apt/sources.list.d/pdi.list
 wget -O ~/pdidev-archive-keyring.gpg https://raw.githubusercontent.com/pdidev/repo/ubuntu/pdidev-archive-keyring.gpg
 chmod a+r ~/pdidev-archive-keyring.gpg 
-apt-get update
+sudo apt-get update
 #apt install -y pdidev-archive-keyring
 
 
